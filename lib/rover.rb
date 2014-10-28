@@ -24,13 +24,12 @@ class Rover
 
   def move(boundary)
     @instructions.value.each do |i| 
-      @position.move_single(i, @position) 
+      @position.move_single(i) 
       unless boundary.in_bounds?(@position)
         puts "rover #{@id}: out of bounds"
         break
       end
     end
-    # puts "rover#{@id} moves: #{@position.print_moves}"
     Dbg.dbg "rover#{@id} moves: #{@position.print_moves}"
   end
 

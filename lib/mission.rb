@@ -8,6 +8,7 @@ class Mission
 
   attr_reader :read, :rovers, :start
 
+  # read input from IO stream
   def read(input)
     Dbg.dbg "reading input..."
     lines = input.read.split("\n").select {|line| line.strip.length != 0}
@@ -32,18 +33,15 @@ class Mission
     @rovers.each {|r| Dbg.dbg r.to_s}
   end
 
+  # return an array of end positions
   def start
     @rovers.each do |r| 
       r.move(@boundary)
     end
 
-    @rovers.each do |r| 
-      puts r.position.to_s
+    end_positions = @rovers.collect do |r|
+      r.position.to_s
     end
-
-    puts "\nDebug output:"
-    puts Dbg.print
-
   end
 
 end

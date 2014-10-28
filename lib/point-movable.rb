@@ -34,24 +34,24 @@ class PointMovable
     @direction = Direction.new(cords[2])
   end
 
-  def move_single(instruction, pt)
-    self.send(instruction.to_sym, pt)
-    @_debug_positions << pt.to_s
+  def move_single(instruction)
+    self.send(instruction.to_sym)
+    @_debug_positions << self.to_s
   end
 
   def to_s
     "#{@x} #{@y} #{@direction}"
   end
 
-  def L(pt)
+  def L
     @direction.rotate_left
   end
 
-  def R(pt)
+  def R
     @direction.rotate_right
   end
 
-  def M(pt)
+  def M
     self.send(PointMovable::MOVEDIR[@direction.to_s])
   end
 
